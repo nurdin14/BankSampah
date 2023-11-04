@@ -39,4 +39,20 @@ class TransaksiController extends Controller
         Transaksi::create($data);
         return redirect()->route('transaksi')->with('success', 'Data berhasil ditambahkan!');
     }
+
+    public function deleteTransaksi($id_transaksi) {
+
+        $buku = Transaksi::find($id_transaksi);
+
+        // Hapus gambar terkait dari direktori 'public/uploads'
+        if (!empty($buku->foto)) {
+            $gambarPath = public_path($buku->foto);
+            unlink($gambarPath);
+        }
+
+        // Hapus catatan dari basis data
+        $buku->delete();
+
+        return redirect()->route('transaksi')->with('success', 'Data berhasil dihapus!');
+    }
 }

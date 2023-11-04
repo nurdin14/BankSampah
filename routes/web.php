@@ -29,5 +29,6 @@ Route::get('/deleteSampah/{id_sampah}', [SampahController::class, 'deleteSampah'
 //transaksi_sampah
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 Route::post('/insertTransaksi', [TransaksiController::class, 'insertTransaksi'])->name('insertTransaksi');
+Route::get('/deleteTransaksi/{id_transaksi}', [TransaksiController::class, 'deleteTransaksi'])->name('deleteTransaksi');
 
 

@@ -38,7 +38,7 @@
                                     <input type="text" class="form-control" name="deskripsi">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Jumlah</label>
+                                    <label class="form-label">Jumlah/kg</label>
                                     <input type="number" class="form-control" id="jumlah" name="jumlah">
                                 </div>
                                 <div class="mb-3">
@@ -88,9 +88,8 @@
                             <td>{{ $d->jumlah }}</td>
                             <td><img src="{{asset($d->foto)}}" width="50""></td>
                             <td>
-                                <a href="/editSampah/{{$d->id_sampah}}" class="btn btn-sm btn-warning">Ubah</a>
-                                <a href="#" class="btn btn-sm btn-danger hapus" data-jenis="admin" data-id="{{ $d->id_sampah }}"
-                                    data-nama="{{ $d->jenis_sampah }}">Hapus</a>
+                                <a href="#" class="btn btn-sm btn-danger hapus" data-jenis="admin" data-id="{{ $d->id_transaksi }}"
+                                    data-nama="{{ $d->nama }}">Hapus</a>
                             </td>
                         </tr>
                         @endforeach

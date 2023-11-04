@@ -93,7 +93,7 @@
                 if (result.isConfirmed) {
 
                     if (jenis == 'admin') {
-                        window.location.href = "/deleteSampah/" + id;
+                        window.location.href = "/deleteTransaksi/" + id;
                     } else if (jenis == 'user') {
                         window.location.href = "/hapusPegawai/" + id;
                     }

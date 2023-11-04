@@ -23,10 +23,16 @@
                                     <label class="form-label">Harga/kg</label>
                                     <input type="number" class="form-control" name="harga_kg" id="harga_kg">
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Nama</label>
-                                    <input type="text" class="form-control" name="nama">
-                                </div>
+                            </div>
+                            <div class="col-4">
+                            <div class="mb-3">
+                                <label class="form-label">Jumlah/kg</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama">
+                            </div>
                             </div>
                             <div class="col-4">
                                 <div class="mb-3">
@@ -38,12 +44,7 @@
                                     <input type="text" class="form-control" name="deskripsi">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Jumlah/kg</label>
-                                    <input type="number" class="form-control" id="jumlah" name="jumlah">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Total</label>
-                                    <input type="number" class="form-control" id="total" name="jumlah" value="">
+                                    <h3>Rp. <span id="total"></span></h3>
                                 </div>
                             </div>
                         </div>

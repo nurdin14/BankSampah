@@ -30,9 +30,6 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/sampah">Kelola Sampah</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/transaksi">Transaksi</a>
         </li>
       </ul>
@@ -80,39 +77,6 @@
             text: `{{ Session::get('success') }}`
         })
         @endif
-    </script>
-
-    <script>
-        $('.hapus').click(function () {
-            var id = $(this).attr('data-id');
-            var nama = $(this).attr('data-nama');
-            var jenis = $(this).attr('data-jenis');
-
-            Swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: 'anda akan menghapus data yang bernama ' + nama,
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Hapus Data!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    if (jenis == 'admin') {
-                        window.location.href = "/deleteTransaksi/" + id;
-                    } else if (jenis == 'user') {
-                        window.location.href = "/hapusPegawai/" + id;
-                    }
-
-                    Swal.fire(
-                        'Terhapus!',
-                        'Data berhasil dihapus.',
-                        'success',
-                    )
-                }
-            })
-        })
     </script>
 
     <script>

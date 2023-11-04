@@ -15,4 +15,28 @@ class TransaksiController extends Controller
         ];
         return view("transaksi/v_tampil", compact('data'));
     }
+
+    public function insertTransaksi(Request $request) {
+
+        $data = [
+            'id_transaksi' => $request->id_transaksi,
+            'jenis_sampah' => $request->jenis_sampah,
+            'harga_kg' => $request->harga_kg,
+            'nama' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+            'jumlah' => $request->jumlah,
+        ];
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $namaFile = time() . '.' . $foto->getClientOriginalExtension();
+            $lokasi = public_path('uploads');
+
+            $foto->move($lokasi, $namaFile);
+            $data['foto'] = 'uploads/' . $namaFile;
+        }
+
+        Transaksi::create($data);
+        return redirect()->route('transaksi')->with('success', 'Data berhasil ditambahkan!');
+    }
 }

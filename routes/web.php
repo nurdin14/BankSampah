@@ -5,6 +5,8 @@ use App\Http\Controllers\SampahController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPenggunaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::group(['middleware' => ['auth','hakakses:admin']], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
     // pemasuk_sampah
     Route::get('/sampah', [SampahController::class, 'index'])->name('sampah');
     Route::post('/insertTrash', [SampahController::class, 'insertTrash'])->name('insertTrash');
@@ -39,9 +44,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::get('/deleteTransaksi/{id_transaksi}', [TransaksiController::class, 'deleteTransaksi'])->name('deleteTransaksi');
 });
 
-Route::group(['middleware' => ['auth', 'role:user']], function () {
+Route::group(['middleware' => ['auth','hakakses:user']], function() {
+    Route::get('/dashboardPengguna', [DashboardPenggunaController::class, 'index'])->name('dashboardPengguna');
+    
     //client
     Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
-    Route::post('/insertTransaksi', [PenggunaController::class, 'insertTransaksi'])->name('insertTransaksi');
-
+    Route::post('/insertPengguna', [PenggunaController::class, 'insertPengguna'])->name('insertPengguna');
 });

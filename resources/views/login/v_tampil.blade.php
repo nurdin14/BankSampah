@@ -18,10 +18,10 @@
 <body>
     
     <div class="container">
-        <div class="row mt-3 justify-content-center">
+        <div class="row mt-3">
             <div class="col">
-                <div class="card" style="width: 25rem;">
-                    <div class="card-header">Login</div>
+                <div class="card" style="width: 25rem; margin-left: 30%;">
+                    <div class="card-header">Form Login</div>
                     <div class="card-body">
                         <form action="/actionLogin" method="post" enctype="multipart/form-data">
                             @csrf
@@ -34,7 +34,7 @@
                                 <input type="password" class="form-control" name="password">
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>
                     </div>

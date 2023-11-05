@@ -17,7 +17,7 @@ class PenggunaController extends Controller
         return view('pengguna/v_tampil', compact('data'));
     }
 
-    public function insertTransaksi(Request $request) {
+    public function insertPengguna(Request $request) {
 
         $data = [
             'id_transaksi' => $request->id_transaksi,

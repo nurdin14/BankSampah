@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\jenisSampah;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class SampahController extends Controller
 {
     public function index() {
         $data = [
-            'sampah' => jenisSampah::all()
+            'sampah' => jenisSampah::all(),
+            'trans' => Transaksi::all()
         ];
         return view("sampah/v_tampil", compact('data'));
         

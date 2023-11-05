@@ -7,7 +7,7 @@
         <div class="card mt-3">
             <div class="card-header">Kalkulator Bank Sampah </div>
             <div class="card-body">
-                <form action="/insertTransaksi" method="post" enctype="multipart/form-data">
+                <form action="/insertPengguna" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Jenis Sampah</label>

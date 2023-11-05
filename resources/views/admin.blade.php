@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
 </head>
 
@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/sampah">Kelola Sampah</a>
@@ -37,11 +37,12 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="/logout">Logout</a>
       </span>
     </div>
   </div>
 </nav>
+
     
     <div class="container">
         @yield('content')
@@ -59,6 +60,8 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         @if (Session:: has('success'))
@@ -165,6 +168,47 @@
     });
 });
 </script>
+
+<script>
+    var data = @json($data['sampah']);
+    var trans = @json($data['trans']);
+    var labels = data.map(function(item) {
+        return item.jenis_sampah; // Ganti dengan properti yang sesuai di model jenisSampah
+    });
+
+    // Hitung tren untuk masing-masing jenis sampah
+    var trendData = labels.map(function(label) {
+        return trans.filter(function(item) {
+            return item.jenis_sampah === label;
+        }).length;
+    });
+
+    var ctx = document.getElementById('trend-sampah-chart').getContext('2d');
+
+    var trendSampahChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Trend Sampah',
+                data: trendData,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna latar belakang grafik
+                borderColor: 'rgba(75, 192, 192, 1)', // Warna garis batas grafik
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    // Anda bisa menyesuaikan lebih banyak opsi skala di sini
+                }
+            }
+        }
+    });
+</script>
+
+
     
 </body>
 

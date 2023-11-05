@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -11,23 +11,15 @@ class LoginController extends Controller
         return view("login/v_tampil");
     }
 
-    public function actionLogin(Request $request)
-    {
-
-        if (Auth::attempt($request->only('email', 'password'))) {
-            // Jika berhasil login, arahkan sesuai peran pengguna
-            return redirect('/sampah');
+    public function actionLogin(Request $request) {
+        $user = Auth::attempt($request->only("email","password"));
+        if($user) {
+            return redirect('/dashboard');
         }
-
-        // Jika login gagal, kembalikan ke halaman login
-        return redirect('/login');
     }
 
-    // Logout pengguna
-    public function logout(Request $request)
-    {
+    public function logout(){
         Auth::logout();
-
         return redirect('/login');
     }
 }
